@@ -1,0 +1,7 @@
+Firecrawl MCP install
+fc-6e8a176980f04df2aa6d19f1b16dcbef
+
+---------
+https://www.finrobazzar.com/ is my source web site. I want to create a werb site with same look and feel. You can use FireCrawl to scrape the data. Also I want to create the app via vite and I want to host it on Azure static web app.
+
+Do you have any questions? Please feel free to ask
