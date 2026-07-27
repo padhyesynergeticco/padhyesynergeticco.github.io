@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.tools/
+.env
+.env.*
+firecrawl-result.json
+reference-screenshots/
+home-built.png
+products-mobile.png
