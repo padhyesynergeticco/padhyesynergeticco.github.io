@@ -74,9 +74,12 @@ function Home() {
           </div>
         </div>
       </section>
+      {/* 
       <section className="stats wrap">
         {stats.map(([number, label]) => <div key={label}><strong>{number}</strong><span>{label}</span></div>)}
-      </section>
+      </section> 
+      */}
+      {/* 
       <section className="trust-section wrap">
         <div className="trust-logo"><img src="/assets/finro-logo.png" alt="FinRo Bazzar" /></div>
         <div>
@@ -88,17 +91,46 @@ function Home() {
           </div>
           <p className="service-line">Investment <b>•</b> Mutual Funds <b>•</b> Loans <b>•</b> Advisory</p>
         </div>
-      </section>
+      </section> 
+      */}
       <section id="about" className="about-section">
         <div className="wrap">
           <span className="eyebrow">Padhye Synergetic Company</span>
           <h2 className="section-title">About Us</h2>
-          <p className="section-lead">This is the parent company of FinRo Bazzar, a multi-domain enterprise bringing together expertise in financial services, creative solutions, and wildlife initiatives.</p>
-          <p className="section-lead"><strong>Operating through its ventures — FinRo Bazzar and B Studios.</strong> The company is committed to integrity, innovation, and delivering meaningful impact.</p>
+          <p className="section-lead">
+            <strong>Padhye Synergetic Company (PSC)</strong> is a trusted financial services firm committed to helping individuals, families, and businesses build, protect, and grow their wealth through informed financial decisions.
+          </p>
+          <p className="section-lead">
+            With a client-first approach, we provide comprehensive financial solutions tailored to every stage of life. Our expertise spans investments, insurance, loans, and wealth management, ensuring that every recommendation aligns with our clients' financial goals and risk profile.
+          </p>
+          <p className="section-lead">
+            At PSC, we believe that financial planning is more than choosing the right product—it’s about creating long-term value, security, and peace of mind. By combining industry expertise, ethical practices, and personalized service, we strive to build lasting relationships based on trust and transparency.
+          </p>
           <div className="value-grid">
-            <article><div className="icon">↗</div><h3>Our Mission</h3><p>To empower individuals, families, and businesses with transparent, reliable, and customised financial solutions.</p></article>
-            <article><div className="icon">◇</div><h3>Our Values</h3><p>Integrity, Client-Centricity, Excellence, and Innovation.</p></article>
-            <article><div className="icon">▣</div><h3>Our Experience</h3><p>Decades of proven expertise in financial markets and wealth management.</p></article>
+            <article>
+              <div className="icon">🚀</div>
+              <h3>Our Services</h3>
+              <p>➟ Financial Planning</p>
+              <p>➟ Mutual Funds</p>
+              <p>➟ Alternative Investment Funds (AIF)</p>
+              <p>➟ Portfolio Management Services (PMS)</p>
+              <p>➟ Structured Products</p>
+              <p>➟ Fixed Deposits & Bonds</p>
+              <p>➟ Life, Health, Motor & General Insurance</p>
+              <p>➟ Home, Business & Personal Loans</p>
+              <p>➟ Real Estate Advisory</p>
+            </article>
+            <article>
+              <div className="icon">🤝</div>
+              <h3>Our Vision</h3>
+              <p>To empower every individual and business with the knowledge and financial solutions needed to achieve long-term prosperity and financial independence.</p>
+            </article>
+            <article>
+              <div className="icon">💼</div>
+              <h3>Our Mission</h3>
+              <p>To deliver transparent, personalized, and innovative financial solutions while maintaining the highest standards of integrity, professionalism, and client satisfaction.</p>
+              <p>Padhye Synergetic Company: Building Wealth. Protecting Futures. Creating Financial Confidence.</p>
+            </article>
           </div>
         </div>
       </section>
@@ -178,19 +210,19 @@ function Products() {
       <section className="process wrap">
         <h2 className="section-title">Our Process</h2>
         <p className="section-lead">A clear and collaborative journey towards your financial goals.</p>
-        <div className="process-flow">{['Personalized Attention','Technical Assessment','Analysis & Planning','Goal Setting','Pathway Creation','Implementation & Guidance'].map((x,i)=><div key={x}><span>{i+1}</span><p>{x}</p></div>)}</div>
+        <div className="process-flow">{['Personalized Attention', 'Technical Assessment', 'Analysis & Planning', 'Goal Setting', 'Pathway Creation', 'Implementation & Guidance'].map((x, i) => <div key={x}><span>{i + 1}</span><p>{x}</p></div>)}</div>
       </section>
       <section className="calculator-section">
         <div className="wrap">
           <h2 className="section-title">Financial Planning Calculators</h2>
           <p className="section-lead">Quickly assess your investment and loan scenarios.</p>
-          <div className="calculator-grid">{['SIP','Lumpsum','STP','SWP','Retirement','Delay Planning','Life Insurance','EMI','Tax','Vacation Planning'].map(x=><div key={x}>{x} Calculator</div>)}</div>
+          <div className="calculator-grid">{['SIP', 'Lumpsum', 'STP', 'SWP', 'Retirement', 'Delay Planning', 'Life Insurance', 'EMI', 'Tax', 'Vacation Planning'].map(x => <div key={x}>{x} Calculator</div>)}</div>
         </div>
       </section>
       <section className="insurance wrap">
         <h2 className="section-title">Comprehensive Insurance Plans</h2>
         <p className="section-lead">Protect yourself and your loved ones from life's uncertainties.</p>
-        <div className="insurance-grid">{insurance.map(([icon,title,text])=><article key={title}><div className="mini-icon">{icon}</div><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
+        <div className="insurance-grid">{insurance.map(([icon, title, text]) => <article key={title}><div className="mini-icon">{icon}</div><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
         <div className="center"><Link className="button primary" to={contactHref}>Get an Insurance Quote</Link></div>
         <p className="disclaimer">Product information and calculations are for illustrative purposes only.</p>
       </section>
@@ -238,7 +270,7 @@ export default function App() {
       <Header />
       {page}
       <Footer />
-      <ChatBubble />
+      {/* <ChatBubble /> */}
     </>
   )
 }
