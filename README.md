@@ -1,6 +1,6 @@
 # FinRo Bazzar
 
-Static Vite + React + TypeScript website prepared for Azure Static Web Apps.
+Static Vite + React + TypeScript website prepared for GitHub Pages.
 
 ## Local development
 
@@ -15,12 +15,10 @@ npm run dev
 npm run build
 ```
 
-## Azure Static Web Apps
+## GitHub Pages
 
-Create an Azure Static Web App linked to this repository and add its deployment token as the GitHub Actions secret `AZURE_STATIC_WEB_APPS_API_TOKEN`.
+The site is deployed from the `main` branch using GitHub Actions.
 
-- App location: `/`
-- Build command: `npm run build`
-- Output location: `dist`
-
-SPA fallback and security headers are configured in `staticwebapp.config.json`.
+1. Make sure GitHub Pages is enabled for the repository and set to use GitHub Actions.
+2. Push to `main` to build and publish the `dist` folder.
+3. If you add client-side routing later, keep `public/404.html` in place so direct refreshes still work.
