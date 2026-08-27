@@ -1,4 +1,4 @@
-# FinRo Bazzar
+# Padhye Synergetic Company
 
 Static Vite + React + TypeScript website prepared for GitHub Pages.
 
