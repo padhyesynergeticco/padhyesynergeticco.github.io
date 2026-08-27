@@ -258,16 +258,16 @@ const products = [
   { icon: 'coins' as const, title: 'Fixed Deposits & Bonds', text: 'Secure your capital with predictable, fixed returns. Choose from a curated selection of FDs and highly-rated corporate bonds.', action: 'View Options' },
 ]
 
-const insurance = [
-  ['shield' as const, 'Life Insurance', "Secure your family's financial future in your absence."],
-  ['health' as const, 'Health Insurance', 'Cover medical expenses and stay prepared for emergencies.'],
-  ['star' as const, 'Child Savings Plans', "Invest for your child's education and future milestones."],
-  ['motor' as const, 'Motor Insurance', 'Protect your vehicle against damage and third-party liability.'],
-  ['property' as const, 'Property Insurance', 'Safeguard your home and its contents from unforeseen events.'],
-  ['clock' as const, 'Term Plans', 'High coverage at affordable premiums for a specific period.'],
-  ['target' as const, 'Guaranteed Return Plans', 'Enjoy fixed returns on your investment, regardless of market conditions.'],
-  ['waves' as const, 'Marine Insurance', 'Cover for loss or damage of ships, cargo, terminals, and transport.'],
-  ['plane' as const, 'Travel Insurance', 'Secure your trips against medical emergencies and lost baggage.'],
+const insurance: [IconName, string, string][] = [
+  ['shield', 'Life Insurance', "Secure your family's financial future in your absence."],
+  ['health', 'Health Insurance', 'Cover medical expenses and stay prepared for emergencies.'],
+  ['star', 'Child Savings Plans', "Invest for your child's education and future milestones."],
+  ['motor', 'Motor Insurance', 'Protect your vehicle against damage and third-party liability.'],
+  ['property', 'Property Insurance', 'Safeguard your home and its contents from unforeseen events.'],
+  ['clock', 'Term Plans', 'High coverage at affordable premiums for a specific period.'],
+  ['target', 'Guaranteed Return Plans', 'Enjoy fixed returns on your investment, regardless of market conditions.'],
+  ['waves', 'Marine Insurance', 'Cover for loss or damage of ships, cargo, terminals, and transport.'],
+  ['plane', 'Travel Insurance', 'Secure your trips against medical emergencies and lost baggage.'],
 ]
 
 function Products() {
