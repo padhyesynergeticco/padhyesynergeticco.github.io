@@ -1,15 +1,16 @@
 import { AnchorHTMLAttributes, useEffect, useRef, useState } from 'react'
 
+// Hash-based routing for GitHub Pages compatibility
+const getRoute = () => (window.location.hash.slice(1) || '/').toLowerCase().replace(/\/$/, '') || '/'
 const contactHref = '/contact'
-const Link = ({ to, ...props }: AnchorHTMLAttributes<HTMLAnchorElement> & { to: string }) => <a href={to} {...props} />
+const Link = ({ to, ...props }: AnchorHTMLAttributes<HTMLAnchorElement> & { to: string }) => <a href={'#' + to} {...props} />
 const NavLink = ({ to, ...props }: AnchorHTMLAttributes<HTMLAnchorElement> & { to: string }) => (
-  <a href={to} className={window.location.pathname.toLowerCase() === to.toLowerCase() ? 'active' : undefined} {...props} />
+  <a href={'#' + to} className={getRoute() === to.toLowerCase() ? 'active' : undefined} {...props} />
 )
 
 function ScrollToTop() {
   useEffect(() => {
-    if (window.location.hash) document.querySelector(window.location.hash)?.scrollIntoView()
-    else window.scrollTo(0, 0)
+    window.scrollTo(0, 0)
   }, [])
   return null
 }
@@ -1123,7 +1124,7 @@ function About() {
       </section>
       <section className="section founder-split wrap" ref={founderReveal.ref}>
         <div className={`founder-media ${founderReveal.className}`}>
-          <img src="/assets/madhav-padhye.jpeg" alt="Mr. Madhav Padhye" />
+          <img src="/assets/madhav-padhye.png" alt="Mr. Madhav Padhye" />
         </div>
         <div className={`founder-copy ${founderReveal.className}`}>
           <span className="eyebrow">Founder</span>
@@ -1183,17 +1184,22 @@ function Contact() {
 }
 
 export default function App() {
-  const path = window.location.pathname.toLowerCase().replace(/\/$/, '') || '/'
+  const [route, setRoute] = useState(getRoute)
+  useEffect(() => {
+    const onHashChange = () => setRoute(getRoute())
+    window.addEventListener('hashchange', onHashChange)
+    return () => window.removeEventListener('hashchange', onHashChange)
+  }, [])
   const page = 
-    path === '/products' ? <Products /> : 
-    path === '/calculators' ? <Calculators /> : 
-    path === '/testimonials' ? <Testimonials /> : 
-    path === '/about' ? <About /> : 
-    path === '/contact' ? <Contact /> : 
+    route === '/products' ? <Products /> : 
+    route === '/calculators' ? <Calculators /> : 
+    route === '/testimonials' ? <Testimonials /> : 
+    route === '/about' ? <About /> : 
+    route === '/contact' ? <Contact /> : 
     <Home />
   return (
     <>
-      <ScrollToTop />
+      <ScrollToTop key={route} />
       <Header />
       {page}
       <Footer />
