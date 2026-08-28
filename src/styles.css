@@ -162,6 +162,7 @@ h3 {
 
 .center {
     text-align: center;
+    margin-top: 50px;
 }
 
 /* header */
@@ -1786,7 +1787,6 @@ textarea:focus {
 }
 
 .calc-value input {
-    width: 85px;
     border: none;
     background: transparent;
     font-family: inherit;
