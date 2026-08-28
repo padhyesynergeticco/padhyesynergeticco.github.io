@@ -81,7 +81,9 @@ function Header() {
         <nav className={open ? 'nav-links open' : 'nav-links'}>
           <NavLink to="/" onClick={close}>Home</NavLink>
           <NavLink to="/products" onClick={close}>Products</NavLink>
-          <Link to="/#about" onClick={close}>About</Link>
+          <NavLink to="/calculators" onClick={close}>Calculators</NavLink>
+          <NavLink to="/testimonials" onClick={close}>Testimonials</NavLink>
+          <NavLink to="/about" onClick={close}>About</NavLink>
           <NavLink to="/contact" onClick={close}>Contact Us</NavLink>
         </nav>
         <div className="nav-actions">
@@ -107,7 +109,9 @@ function Footer() {
           <p className="footer-heading">Explore</p>
           <Link to="/">Home</Link>
           <Link to="/products">Products</Link>
-          <Link to="/#about">About</Link>
+          <Link to="/calculators">Calculators</Link>
+          <Link to="/testimonials">Testimonials</Link>
+          <Link to="/about">About</Link>
           <Link to="/contact">Contact Us</Link>
         </div>
         <div className="footer-col">
@@ -120,6 +124,7 @@ function Footer() {
       <div className="wrap footer-bottom">
         <p>© 2026 Padhye Synergetic Company. All rights reserved. AMFI Registered Mutual Fund Distributor.</p>
         <p>Mutual Fund investments are subject to market risks, read all scheme related documents carefully.</p>
+        <p>Designed & Developed by <a href="https://finetune-solutions.com/" target="_blank" rel="noopener noreferrer">FineTune Solutions</a></p>
       </div>
     </footer>
   )
@@ -158,10 +163,35 @@ const pillars = [
   },
 ]
 
+// Financial goals data
+const financialGoals = [
+  { icon: 'clock' as const, title: 'Retirement Planning', desc: 'Build a corpus for a comfortable, worry-free retirement', link: '/calculators' },
+  { icon: 'star' as const, title: "Child's Education", desc: "Secure your child's future education expenses", link: '/calculators' },
+  { icon: 'home' as const, title: 'Buy a Home', desc: 'Plan your down payment and home loan strategy', link: '/calculators' },
+  { icon: 'shield' as const, title: 'Family Protection', desc: 'Ensure financial security for your loved ones', link: '/products' },
+  { icon: 'target' as const, title: 'Wealth Creation', desc: 'Grow your money systematically over time', link: '/calculators' },
+  { icon: 'waves' as const, title: 'Emergency Fund', desc: 'Build a safety net for unexpected expenses', link: '/calculators' },
+]
+
+const whyChooseUs = [
+  { num: '01', title: 'Personalized Advice', desc: 'Every recommendation is tailored to your unique financial situation, goals, and risk appetite.' },
+  { num: '02', title: 'Transparent Approach', desc: 'No hidden fees, no conflicts of interest. We earn your trust through complete transparency.' },
+  { num: '03', title: 'Comprehensive Solutions', desc: 'From mutual funds to insurance to loans — all your financial needs under one roof.' },
+  { num: '04', title: '15+ Years Experience', desc: 'Proven track record of helping 7,000+ clients achieve their financial goals.' },
+]
+
+const howWeWork = [
+  { step: '01', title: 'Understand Your Goals', desc: 'We listen to your aspirations, timeline, and risk tolerance' },
+  { step: '02', title: 'Create Your Plan', desc: 'A customized strategy aligned with your financial objectives' },
+  { step: '03', title: 'Execute Together', desc: 'We help you implement with the right products and timing' },
+  { step: '04', title: 'Review & Optimize', desc: 'Regular check-ins to keep your portfolio on track' },
+]
+
 function Home() {
-  const aboutReveal = useReveal<HTMLDivElement>()
-  const founderReveal = useReveal<HTMLDivElement>()
-  const quoteReveal = useReveal<HTMLDivElement>()
+  const goalsReveal = useReveal<HTMLDivElement>()
+  const servicesReveal = useReveal<HTMLDivElement>()
+  const whyReveal = useReveal<HTMLDivElement>()
+  const processReveal = useReveal<HTMLOListElement>()
   return (
     <main>
       <section className="hero">
@@ -185,68 +215,113 @@ function Home() {
           </aside>
         </div>
       </section>
-      <section id="about" className="section section-alt">
-        <div className="wrap">
-          <div className="section-head">
-            <span className="eyebrow">Padhye Synergetic Company</span>
-            <h2 className="section-title">A firm built on trust, not transactions</h2>
-          </div>
-          <div className="lead-column">
-            <p><strong>Padhye Synergetic Company (PSC)</strong> is an independent financial services firm committed to helping individuals, families, and businesses build, protect, and grow their wealth through informed financial decisions.</p>
-            <p>With a client-first approach, we provide comprehensive financial solutions tailored to every stage of life — spanning investments, insurance, loans, and wealth management, so every recommendation aligns with your goals and risk profile.</p>
-            <p>Financial planning is more than choosing the right product — it's about creating long-term value, security, and peace of mind, built on ethical practice and transparency.</p>
-          </div>
-          <div className="index-grid" ref={aboutReveal.ref}>
-            {pillars.map((p, i) => (
-              <article className={`index-card ${aboutReveal.className}`} style={{ transitionDelay: `${i * 90}ms` }} key={p.num}>
-                <span className="index-num">{p.num}</span>
-                <h3>{p.title}</h3>
-                {p.lines && <ul className="index-list">{p.lines.map(l => <li key={l}>{l}</li>)}</ul>}
-                {p.text && <p>{p.text}</p>}
-                {p.text2 && <p className="index-tagline">{p.text2}</p>}
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className="section founder-split wrap" ref={founderReveal.ref}>
-        <div className={`founder-media ${founderReveal.className}`}>
-          <img src="/assets/madhav-padhye.jpeg" alt="Mr. Madhav Padhye" />
-        </div>
-        <div className={`founder-copy ${founderReveal.className}`}>
-          <span className="eyebrow">Founder</span>
-          <h2 className="section-title left">Mr. Madhav Padhye</h2>
-          <p className="role-tag">Founder, Padhye Synergetic Company</p>
-          <p>Mr. Madhav Padhye is the guiding force behind Padhye Synergetic Company. With decades of financial knowledge and practical market experience, he specialises in investments, insurance planning, structured products, bonds, and long-term wealth strategies.</p>
-          <p>His leadership is rooted in honesty, transparency, and delivering well-researched, personalised financial solutions.</p>
-        </div>
-      </section>
-      <section className="quiet-band">
-        <div className="wrap narrow">
-          <Icon name="quote" className="band-quote" />
-          <h2>Inspiration — Mr. Madhusudhan Nawathe</h2>
-          <p>Although not a board member, Mr. Nawathe is a source of guidance and inspiration for the team. His value-driven outlook, discipline, and experience shape our approach to honesty, client service, and long-term trust.</p>
-        </div>
-      </section>
-      <section className="section wrap">
+
+      {/* Goals Section */}
+      <section className="section wrap" id="goals">
         <div className="section-head">
-          <span className="eyebrow">What Clients Say</span>
-          <h2 className="section-title">Trusted by thousands of investors</h2>
+          <span className="eyebrow">Your Goals, Our Priority</span>
+          <h2 className="section-title">Plan for what matters most</h2>
+          <p className="section-subtitle">Every financial journey starts with a goal. Tell us yours, and we'll help you get there.</p>
         </div>
-        <div className="quote-grid" ref={quoteReveal.ref}>
-          <blockquote className={`quote-card ${quoteReveal.className}`}>
-            <Icon name="quote" className="quote-mark" />
-            <p>I have known Madhav for over a decade and have relied on his expertise for multiple home loan processes across different banks. His deep knowledge and clear guidance made the entire experience smooth and stress-free.</p>
-            <cite>Siddharth Ghosh</cite>
-          </blockquote>
-          <blockquote className={`quote-card ${quoteReveal.className}`} style={{ transitionDelay: '110ms' }}>
-            <Icon name="quote" className="quote-mark" />
-            <p>Their prompt responses, deep expertise, and consistent commitment to delivering the best possible guidance truly set them apart. Their approach to wealth creation is built on trust, strong ethical values, and absolute transparency.</p>
-            <cite>Dr. Binay Kumar</cite>
-          </blockquote>
+        <div className="goals-grid" ref={goalsReveal.ref}>
+          {financialGoals.map((goal, i) => (
+            <Link to={goal.link} className={`goal-card ${goalsReveal.className}`} style={{ transitionDelay: `${(i % 3) * 80}ms` }} key={goal.title}>
+              <div className="goal-icon"><Icon name={goal.icon} /></div>
+              <h3>{goal.title}</h3>
+              <p>{goal.desc}</p>
+              <span className="goal-arrow"><Icon name="arrow" /></span>
+            </Link>
+          ))}
         </div>
       </section>
-      <ContactPanel compact />
+
+      {/* Services Overview */}
+      <section className="section wrap services-overview" id="about">
+        <div className="section-head">
+          <span className="eyebrow">What We Offer</span>
+          <h2 className="section-title">Comprehensive financial solutions</h2>
+        </div>
+        <div className="services-split" ref={servicesReveal.ref}>
+          <div className={`services-list ${servicesReveal.className}`}>
+            <div className="service-category">
+              <h3><Icon name="growth" /> Investments</h3>
+              <ul>
+                <li>Mutual Funds & SIPs</li>
+                <li>Portfolio Management (PMS)</li>
+                <li>Alternative Investment Funds (AIF)</li>
+                <li>Fixed Deposits & Bonds</li>
+                <li>Structured Products</li>
+              </ul>
+            </div>
+            <div className="service-category">
+              <h3><Icon name="shield" /> Insurance</h3>
+              <ul>
+                <li>Life & Term Insurance</li>
+                <li>Health Insurance</li>
+                <li>Motor & Property Insurance</li>
+                <li>Child Savings Plans</li>
+              </ul>
+            </div>
+            <div className="service-category">
+              <h3><Icon name="home" /> Loans</h3>
+              <ul>
+                <li>Home Loans</li>
+                <li>Business Loans</li>
+                <li>Personal Loans</li>
+                <li>Loan Against Property</li>
+              </ul>
+            </div>
+          </div>
+          <div className={`services-cta ${servicesReveal.className}`} style={{ transitionDelay: '150ms' }}>
+            <div className="cta-box">
+              <Icon name="advisory" />
+              <h3>Not sure where to start?</h3>
+              <p>Get a free consultation with our experts. We'll analyze your current financial situation and recommend the best path forward.</p>
+              <Link className="btn btn-primary" to={contactHref}>Book Free Consultation<Icon name="arrow" /></Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="section wrap why-us-section">
+        <div className="section-head">
+          <span className="eyebrow">Why Padhye Synergetic</span>
+          <h2 className="section-title">Built on trust, not transactions</h2>
+        </div>
+        <div className="why-grid" ref={whyReveal.ref}>
+          {whyChooseUs.map((item, i) => (
+            <div className={`why-card ${whyReveal.className}`} style={{ transitionDelay: `${i * 80}ms` }} key={item.num}>
+              <span className="why-num">{item.num}</span>
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* How We Work */}
+      <section className="section wrap process-section">
+        <div className="section-head">
+          <span className="eyebrow">Our Process</span>
+          <h2 className="section-title">How we help you succeed</h2>
+        </div>
+        <ol className="process-steps" ref={processReveal.ref}>
+          {howWeWork.map((item, i) => (
+            <li className={`process-step ${processReveal.className}`} style={{ transitionDelay: `${i * 100}ms` }} key={item.step}>
+              <span className="step-num">{item.step}</span>
+              <div className="step-content">
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+        <div className="center" style={{ marginTop: '2.5rem' }}>
+          <Link className="btn btn-primary" to="/calculators">Try Our Calculators<Icon name="arrow" /></Link>
+          <Link className="btn btn-ghost" to="/products" style={{ marginLeft: '1rem' }}>Explore Products</Link>
+        </div>
+      </section>
     </main>
   )
 }
@@ -274,7 +349,6 @@ function Products() {
   const productsReveal = useReveal<HTMLDivElement>()
   const loansReveal = useReveal<HTMLDivElement>()
   const timelineReveal = useReveal<HTMLOListElement>()
-  const calcReveal = useReveal<HTMLDivElement>()
   const protectReveal = useReveal<HTMLDivElement>()
   return (
     <main className="products-page">
@@ -282,7 +356,7 @@ function Products() {
         <div className="wrap">
           <span className="eyebrow">Products & Services</span>
           <h1>Comprehensive financial solutions</h1>
-          <p>Explore diverse investment options and utilize our free tools to plan your future.</p>
+          <p>Explore diverse investment options tailored to your financial goals.</p>
         </div>
       </section>
       <section className="section wrap">
@@ -328,30 +402,745 @@ function Products() {
       <section className="section section-alt">
         <div className="wrap">
           <div className="section-head">
-            <h2 className="section-title left">Financial planning calculators</h2>
-            <p className="section-lead left">Quickly assess your investment and loan scenarios.</p>
+            <h2 className="section-title left">Comprehensive insurance plans</h2>
+            <p className="section-lead left">Protect yourself and your loved ones from life's uncertainties.</p>
           </div>
-          <div className="chip-grid" ref={calcReveal.ref}>
-            {['SIP', 'Lumpsum', 'STP', 'SWP', 'Retirement', 'Delay Planning', 'Life Insurance', 'EMI', 'Tax', 'Vacation Planning'].map((x, i) => <div className={`chip ${calcReveal.className}`} style={{ transitionDelay: `${i * 40}ms` }} key={x}>{x} Calculator</div>)}
+          <div className="protect-grid" ref={protectReveal.ref}>
+            {insurance.map(([icon, title, text], i) => (
+              <article className={`protect-card ${protectReveal.className}`} style={{ transitionDelay: `${(i % 3) * 80}ms` }} key={title}>
+                <div className="icon-tile sm"><Icon name={icon} /></div>
+                <div><h3>{title}</h3><p>{text}</p></div>
+              </article>
+            ))}
           </div>
+          <div className="center"><Link className="btn btn-primary" to={contactHref}>Get an insurance quote</Link></div>
+          <p className="disclaimer">Product information and calculations are for illustrative purposes only.</p>
+        </div>
+      </section>
+    </main>
+  )
+}
+
+// Utility functions for calculations
+const formatCurrency = (n: number) => '₹' + n.toLocaleString('en-IN', { maximumFractionDigits: 0 })
+const formatCurrencyDecimal = (n: number) => '₹' + n.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+
+// Calculator Input Component
+function CalcInput({ label, value, onChange, suffix, min, max, step = 1 }: { label: string; value: number; onChange: (v: number) => void; suffix?: string; min?: number; max?: number; step?: number }) {
+  return (
+    <div className="calc-input">
+      <label>{label}</label>
+      <div className="calc-input-row">
+        <input
+          type="range"
+          min={min}
+          max={max}
+          step={step}
+          value={value}
+          onChange={(e) => onChange(Number(e.target.value))}
+        />
+        <div className="calc-value">
+          <input
+            type="number"
+            value={value}
+            onChange={(e) => onChange(Number(e.target.value))}
+            min={min}
+            max={max}
+            step={step}
+          />
+          {suffix && <span className="calc-suffix">{suffix}</span>}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// Result Row Component
+function ResultRow({ label, value, highlight, dotColor }: { label: string; value: string; highlight?: boolean; dotColor?: 'invested' | 'returns' }) {
+  return (
+    <div className={`calc-result-row${highlight ? ' highlight' : ''}`}>
+      <span>
+        {dotColor && <span className={`dot ${dotColor}`}></span>}
+        {label}
+      </span>
+      <strong>{value}</strong>
+    </div>
+  )
+}
+
+// Donut Chart Component
+function DonutChart({ invested, returns, total }: { invested: number; returns: number; total: number }) {
+  const radius = 60
+  const circumference = 2 * Math.PI * radius
+  const investedPercent = total > 0 ? invested / total : 0
+  const returnsPercent = total > 0 ? returns / total : 0
+  
+  const investedDash = investedPercent * circumference
+  const returnsDash = returnsPercent * circumference
+  const returnsOffset = circumference - investedDash
+  
+  return (
+    <div className="calc-donut">
+      <svg viewBox="0 0 140 140">
+        <circle className="donut-bg" cx="70" cy="70" r={radius} />
+        <circle 
+          className="donut-invested" 
+          cx="70" cy="70" r={radius}
+          strokeDasharray={`${investedDash} ${circumference}`}
+        />
+        <circle 
+          className="donut-returns" 
+          cx="70" cy="70" r={radius}
+          strokeDasharray={`${returnsDash} ${circumference}`}
+          strokeDashoffset={-investedDash}
+        />
+      </svg>
+      <div className="calc-donut-center">
+        <small>Total Value</small>
+        <strong>{formatCurrency(total)}</strong>
+      </div>
+    </div>
+  )
+}
+
+// SIP Calculator
+function SIPCalculator() {
+  const [monthly, setMonthly] = useState(10000)
+  const [rate, setRate] = useState(12)
+  const [years, setYears] = useState(10)
+
+  const months = years * 12
+  const monthlyRate = rate / 100 / 12
+  const futureValue = monthly * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate)
+  const totalInvested = monthly * months
+  const gains = futureValue - totalInvested
+
+  return (
+    <div className="calculator-card">
+      <div className="calc-card-header">
+        <Icon name="growth" />
+        <div className="calc-header-text">
+          <h3>SIP Calculator</h3>
+          <p>Plan your systematic investments and see how small monthly contributions grow over time.</p>
+        </div>
+      </div>
+      <div className="calc-body">
+        <div className="calc-inputs">
+          <CalcInput label="Monthly Investment (₹)" value={monthly} onChange={setMonthly} suffix="₹" min={500} max={500000} step={500} />
+          <CalcInput label="Expected Return Rate (%)" value={rate} onChange={setRate} suffix="%" min={1} max={30} step={0.5} />
+          <CalcInput label="Investment Period (Years)" value={years} onChange={setYears} suffix="Yrs" min={1} max={40} />
+        </div>
+        <div className="calc-results-wrapper">
+          <DonutChart invested={totalInvested} returns={gains} total={futureValue} />
+          <div className="calc-results">
+            <ResultRow label="Total Invested" value={formatCurrency(totalInvested)} dotColor="invested" />
+            <ResultRow label="Estimated Returns" value={formatCurrency(gains)} dotColor="returns" />
+            <ResultRow label="Total Value" value={formatCurrency(futureValue)} highlight />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// Lumpsum Calculator
+function LumpsumCalculator() {
+  const [principal, setPrincipal] = useState(100000)
+  const [rate, setRate] = useState(12)
+  const [years, setYears] = useState(10)
+
+  const futureValue = principal * Math.pow(1 + rate / 100, years)
+  const gains = futureValue - principal
+
+  return (
+    <div className="calculator-card">
+      <div className="calc-card-header">
+        <Icon name="coins" />
+        <div className="calc-header-text">
+          <h3>Lumpsum Calculator</h3>
+          <p>Calculate returns on a one-time investment over your chosen time horizon.</p>
+        </div>
+      </div>
+      <div className="calc-body">
+        <div className="calc-inputs">
+          <CalcInput label="Investment Amount (₹)" value={principal} onChange={setPrincipal} suffix="₹" min={1000} max={10000000} step={1000} />
+          <CalcInput label="Expected Return Rate (%)" value={rate} onChange={setRate} suffix="%" min={1} max={30} step={0.5} />
+          <CalcInput label="Investment Period (Years)" value={years} onChange={setYears} suffix="Yrs" min={1} max={40} />
+        </div>
+        <div className="calc-results-wrapper">
+          <DonutChart invested={principal} returns={gains} total={futureValue} />
+          <div className="calc-results">
+            <ResultRow label="Invested Amount" value={formatCurrency(principal)} dotColor="invested" />
+            <ResultRow label="Estimated Returns" value={formatCurrency(gains)} dotColor="returns" />
+            <ResultRow label="Total Value" value={formatCurrency(futureValue)} highlight />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// STP Calculator
+function STPCalculator() {
+  const [sourceAmount, setSourceAmount] = useState(500000)
+  const [transferAmount, setTransferAmount] = useState(25000)
+  const [sourceRate, setSourceRate] = useState(7)
+  const [targetRate, setTargetRate] = useState(12)
+
+  const months = Math.ceil(sourceAmount / transferAmount)
+  const targetMonthlyRate = targetRate / 100 / 12
+  const sourceMonthlyRate = sourceRate / 100 / 12
+
+  let targetValue = 0
+  let remainingSource = sourceAmount
+  for (let i = 0; i < months; i++) {
+    remainingSource = remainingSource * (1 + sourceMonthlyRate) - transferAmount
+    if (remainingSource < 0) remainingSource = 0
+    targetValue = (targetValue + transferAmount) * (1 + targetMonthlyRate)
+  }
+
+  const gains = targetValue - sourceAmount
+
+  return (
+    <div className="calculator-card">
+      <div className="calc-card-header">
+        <Icon name="target" />
+        <div className="calc-header-text">
+          <h3>STP Calculator</h3>
+          <p>Estimate returns when systematically transferring from one fund to another.</p>
+        </div>
+      </div>
+      <div className="calc-body">
+        <div className="calc-inputs">
+          <CalcInput label="Source Fund Amount (₹)" value={sourceAmount} onChange={setSourceAmount} suffix="₹" min={10000} max={10000000} step={5000} />
+          <CalcInput label="Monthly Transfer (₹)" value={transferAmount} onChange={setTransferAmount} suffix="₹" min={1000} max={100000} step={1000} />
+          <CalcInput label="Source Fund Return (%)" value={sourceRate} onChange={setSourceRate} suffix="%" min={1} max={15} step={0.5} />
+          <CalcInput label="Target Fund Return (%)" value={targetRate} onChange={setTargetRate} suffix="%" min={1} max={30} step={0.5} />
+        </div>
+        <div className="calc-results-wrapper">
+          <DonutChart invested={sourceAmount} returns={gains} total={targetValue} />
+          <div className="calc-results">
+            <ResultRow label="Transfer Duration" value={`${months} months`} />
+            <ResultRow label="Total Transferred" value={formatCurrency(sourceAmount)} dotColor="invested" />
+            <ResultRow label="Target Fund Value" value={formatCurrency(targetValue)} highlight />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// SWP Calculator
+function SWPCalculator() {
+  const [corpus, setCorpus] = useState(1000000)
+  const [withdrawal, setWithdrawal] = useState(10000)
+  const [rate, setRate] = useState(8)
+  const [years, setYears] = useState(10)
+
+  const months = years * 12
+  const monthlyRate = rate / 100 / 12
+  let balance = corpus
+  let totalWithdrawn = 0
+
+  for (let i = 0; i < months && balance > 0; i++) {
+    balance = balance * (1 + monthlyRate) - withdrawal
+    totalWithdrawn += withdrawal
+  }
+  if (balance < 0) balance = 0
+
+  return (
+    <div className="calculator-card">
+      <div className="calc-card-header">
+        <Icon name="waves" />
+        <div className="calc-header-text">
+          <h3>SWP Calculator</h3>
+          <p>Plan regular withdrawals from your investments while preserving capital.</p>
+        </div>
+      </div>
+      <div className="calc-body">
+        <div className="calc-inputs">
+          <CalcInput label="Initial Investment (₹)" value={corpus} onChange={setCorpus} suffix="₹" min={100000} max={50000000} step={10000} />
+          <CalcInput label="Monthly Withdrawal (₹)" value={withdrawal} onChange={setWithdrawal} suffix="₹" min={1000} max={500000} step={1000} />
+          <CalcInput label="Expected Return (%)" value={rate} onChange={setRate} suffix="%" min={1} max={20} step={0.5} />
+          <CalcInput label="Withdrawal Period (Years)" value={years} onChange={setYears} suffix="Yrs" min={1} max={30} />
+        </div>
+        <div className="calc-results-wrapper">
+          <DonutChart invested={totalWithdrawn} returns={balance} total={totalWithdrawn + balance} />
+          <div className="calc-results">
+            <ResultRow label="Total Withdrawn" value={formatCurrency(totalWithdrawn)} dotColor="invested" />
+            <ResultRow label="Remaining Balance" value={formatCurrency(balance)} highlight />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// Retirement Calculator
+function RetirementCalculator() {
+  const [currentAge, setCurrentAge] = useState(30)
+  const [retireAge, setRetireAge] = useState(60)
+  const [lifeExpectancy, setLifeExpectancy] = useState(85)
+  const [monthlyExpense, setMonthlyExpense] = useState(50000)
+  const [currentCorpus, setCurrentCorpus] = useState(100000)
+  const [monthlySIP, setMonthlySIP] = useState(10000)
+  const [preReturnRate, setPreReturnRate] = useState(12)
+  const [postReturnRate, setPostReturnRate] = useState(8)
+  const [inflation, setInflation] = useState(6)
+
+  const yearsToRetire = retireAge - currentAge
+  const retirementYears = lifeExpectancy - retireAge
+
+  // Future value of current corpus
+  const fvCurrentCorpus = currentCorpus * Math.pow(1 + preReturnRate / 100, yearsToRetire)
+
+  // Future value of SIPs
+  const monthlyRate = preReturnRate / 100 / 12
+  const months = yearsToRetire * 12
+  const fvSIP = monthlySIP * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate)
+
+  const totalCorpusAtRetirement = fvCurrentCorpus + fvSIP
+
+  // Monthly expense at retirement (adjusted for inflation)
+  const monthlyExpenseAtRetirement = monthlyExpense * Math.pow(1 + inflation / 100, yearsToRetire)
+
+  // Required corpus (using annuity formula with inflation adjustment)
+  const realReturnRate = ((1 + postReturnRate / 100) / (1 + inflation / 100) - 1)
+  const monthlyRealRate = realReturnRate / 12
+  const withdrawalMonths = retirementYears * 12
+  const requiredCorpus = monthlyExpenseAtRetirement * ((1 - Math.pow(1 + monthlyRealRate, -withdrawalMonths)) / monthlyRealRate)
+
+  const isSufficient = totalCorpusAtRetirement >= requiredCorpus
+
+  return (
+    <div className="calculator-card retirement-calc">
+      <div className="calc-card-header">
+        <Icon name="clock" />
+        <div className="calc-header-text">
+          <h3>Retirement Calculator</h3>
+          <p>Plan your financial freedom by calculating the corpus needed to sustain your lifestyle through retirement.</p>
+        </div>
+      </div>
+      <div className="calc-body">
+        <div className="calc-inputs">
+          <CalcInput label="Current Age (Years)" value={currentAge} onChange={setCurrentAge} suffix="Yrs" min={18} max={60} />
+          <CalcInput label="Retirement Age (Years)" value={retireAge} onChange={setRetireAge} suffix="Yrs" min={40} max={70} />
+          <CalcInput label="Life Expectancy (Years)" value={lifeExpectancy} onChange={setLifeExpectancy} suffix="Yrs" min={60} max={100} />
+          <CalcInput label="Current Monthly Expense (₹)" value={monthlyExpense} onChange={setMonthlyExpense} suffix="₹" min={10000} max={500000} step={5000} />
+          <CalcInput label="Current Investment Corpus (₹)" value={currentCorpus} onChange={setCurrentCorpus} suffix="₹" min={0} max={50000000} step={10000} />
+          <CalcInput label="Monthly SIP (₹)" value={monthlySIP} onChange={setMonthlySIP} suffix="₹" min={0} max={500000} step={1000} />
+          <CalcInput label="Pre-Retirement Return (%)" value={preReturnRate} onChange={setPreReturnRate} suffix="%" min={1} max={20} step={0.5} />
+          <CalcInput label="Post-Retirement Return (%)" value={postReturnRate} onChange={setPostReturnRate} suffix="%" min={1} max={15} step={0.5} />
+          <CalcInput label="Expected Inflation (%)" value={inflation} onChange={setInflation} suffix="%" min={1} max={12} step={0.5} />
+        </div>
+        <div className={`calc-verdict ${isSufficient ? 'sufficient' : 'insufficient'}`}>
+          {isSufficient ? '✓ Your Plan Looks Good!' : '✗ Your Plan May Not Be Sufficient'}
+        </div>
+        <div className="calc-results-wrapper no-chart">
+          <div className="calc-results">
+            <h4>Accumulation Phase Summary</h4>
+            <ResultRow label="Years until Retirement" value={`${yearsToRetire} Years`} />
+            <ResultRow label="Future Value of Current Corpus" value={formatCurrencyDecimal(fvCurrentCorpus)} />
+            <ResultRow label="Future Value of SIPs" value={formatCurrencyDecimal(fvSIP)} />
+            <ResultRow label="Total Corpus at Retirement" value={formatCurrencyDecimal(totalCorpusAtRetirement)} highlight />
+          </div>
+        </div>
+        <div className="calc-results-wrapper no-chart" style={{ marginTop: '16px' }}>
+          <div className="calc-results">
+            <h4>Withdrawal & Target Summary</h4>
+            <ResultRow label="Monthly Expense at Retirement" value={formatCurrencyDecimal(monthlyExpenseAtRetirement)} />
+            <ResultRow label="Target Corpus Required" value={formatCurrencyDecimal(requiredCorpus)} />
+            <ResultRow label={isSufficient ? 'Surplus' : 'Shortfall'} value={formatCurrencyDecimal(Math.abs(totalCorpusAtRetirement - requiredCorpus))} highlight />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// Delay Planning Calculator
+function DelayCalculator() {
+  const [monthlySIP, setMonthlySIP] = useState(10000)
+  const [rate, setRate] = useState(12)
+  const [years, setYears] = useState(20)
+  const [delay, setDelay] = useState(5)
+
+  const monthlyRate = rate / 100 / 12
+  const months = years * 12
+  const delayedMonths = (years - delay) * 12
+
+  const withoutDelay = monthlySIP * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate)
+  const withDelay = monthlySIP * ((Math.pow(1 + monthlyRate, delayedMonths) - 1) / monthlyRate) * (1 + monthlyRate)
+  const costOfDelay = withoutDelay - withDelay
+
+  return (
+    <div className="calculator-card">
+      <div className="calc-card-header">
+        <Icon name="clock" />
+        <div className="calc-header-text">
+          <h3>Delay Planning Calculator</h3>
+          <p>See the cost of delaying your investments and understand the power of starting early.</p>
+        </div>
+      </div>
+      <div className="calc-body">
+        <div className="calc-inputs">
+          <CalcInput label="Monthly SIP (₹)" value={monthlySIP} onChange={setMonthlySIP} suffix="₹" min={500} max={500000} step={500} />
+          <CalcInput label="Expected Return (%)" value={rate} onChange={setRate} suffix="%" min={1} max={30} step={0.5} />
+          <CalcInput label="Total Investment Period (Years)" value={years} onChange={setYears} suffix="Yrs" min={5} max={40} />
+          <CalcInput label="Delay in Starting (Years)" value={delay} onChange={setDelay} suffix="Yrs" min={1} max={years - 1} />
+        </div>
+        <div className="calc-results-wrapper no-chart">
+          <div className="calc-results">
+            <ResultRow label="If You Start Now" value={formatCurrency(withoutDelay)} />
+            <ResultRow label={`If You Delay by ${delay} Years`} value={formatCurrency(withDelay)} />
+            <ResultRow label="Cost of Delay" value={formatCurrency(costOfDelay)} highlight />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// Life Insurance Calculator
+function LifeInsuranceCalculator() {
+  const [annualIncome, setAnnualIncome] = useState(1200000)
+  const [currentAge, setCurrentAge] = useState(35)
+  const [retireAge, setRetireAge] = useState(60)
+  const [liabilities, setLiabilities] = useState(2000000)
+  const [existingCover, setExistingCover] = useState(0)
+  const [inflation, setInflation] = useState(6)
+
+  const yearsToRetire = retireAge - currentAge
+  const incomeMultiplier = 15 // Standard rule of thumb
+  const inflationAdjusted = annualIncome * ((Math.pow(1 + inflation / 100, yearsToRetire) - 1) / (inflation / 100))
+  const requiredCover = (annualIncome * incomeMultiplier) + liabilities - existingCover
+  const idealCover = Math.max(requiredCover, inflationAdjusted)
+
+  return (
+    <div className="calculator-card">
+      <div className="calc-card-header">
+        <Icon name="shield" />
+        <div className="calc-header-text">
+          <h3>Life Insurance Calculator</h3>
+          <p>Calculate the ideal life cover to protect your family's future financial needs.</p>
+        </div>
+      </div>
+      <div className="calc-body">
+        <div className="calc-inputs">
+          <CalcInput label="Annual Income (₹)" value={annualIncome} onChange={setAnnualIncome} suffix="₹" min={100000} max={50000000} step={50000} />
+          <CalcInput label="Current Age (Years)" value={currentAge} onChange={setCurrentAge} suffix="Yrs" min={18} max={60} />
+          <CalcInput label="Retirement Age (Years)" value={retireAge} onChange={setRetireAge} suffix="Yrs" min={40} max={70} />
+          <CalcInput label="Outstanding Liabilities (₹)" value={liabilities} onChange={setLiabilities} suffix="₹" min={0} max={50000000} step={100000} />
+          <CalcInput label="Existing Life Cover (₹)" value={existingCover} onChange={setExistingCover} suffix="₹" min={0} max={50000000} step={100000} />
+          <CalcInput label="Inflation Rate (%)" value={inflation} onChange={setInflation} suffix="%" min={1} max={12} step={0.5} />
+        </div>
+        <div className="calc-results-wrapper no-chart">
+          <div className="calc-results">
+            <ResultRow label="Years of Income Replacement" value={`${yearsToRetire} Years`} />
+            <ResultRow label="Income Replacement Need" value={formatCurrency(annualIncome * incomeMultiplier)} />
+            <ResultRow label="Plus Liabilities" value={formatCurrency(liabilities)} />
+            <ResultRow label="Less Existing Cover" value={formatCurrency(existingCover)} />
+            <ResultRow label="Recommended Life Cover" value={formatCurrency(idealCover)} highlight />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// EMI Calculator
+function EMICalculator() {
+  const [principal, setPrincipal] = useState(5000000)
+  const [rate, setRate] = useState(8.5)
+  const [tenure, setTenure] = useState(20)
+
+  const monthlyRate = rate / 100 / 12
+  const months = tenure * 12
+  const emi = principal * monthlyRate * Math.pow(1 + monthlyRate, months) / (Math.pow(1 + monthlyRate, months) - 1)
+  const totalPayment = emi * months
+  const totalInterest = totalPayment - principal
+
+  return (
+    <div className="calculator-card">
+      <div className="calc-card-header">
+        <Icon name="home" />
+        <div className="calc-header-text">
+          <h3>EMI Calculator</h3>
+          <p>Estimate your monthly loan payments for home, car, or personal loans.</p>
+        </div>
+      </div>
+      <div className="calc-body">
+        <div className="calc-inputs">
+          <CalcInput label="Loan Amount (₹)" value={principal} onChange={setPrincipal} suffix="₹" min={100000} max={100000000} step={50000} />
+          <CalcInput label="Interest Rate (%)" value={rate} onChange={setRate} suffix="%" min={1} max={20} step={0.1} />
+          <CalcInput label="Loan Tenure (Years)" value={tenure} onChange={setTenure} suffix="Yrs" min={1} max={30} />
+        </div>
+        <div className="calc-results-wrapper">
+          <DonutChart invested={principal} returns={totalInterest} total={totalPayment} />
+          <div className="calc-results">
+            <ResultRow label="Monthly EMI" value={formatCurrency(emi)} highlight />
+            <ResultRow label="Principal Amount" value={formatCurrency(principal)} dotColor="invested" />
+            <ResultRow label="Total Interest" value={formatCurrency(totalInterest)} dotColor="returns" />
+            <ResultRow label="Total Payment" value={formatCurrency(totalPayment)} />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// Tax Calculator (Old vs New Regime)
+function TaxCalculator() {
+  const [income, setIncome] = useState(1500000)
+  const [deductions80C, setDeductions80C] = useState(150000)
+  const [deductions80D, setDeductions80D] = useState(25000)
+  const [hra, setHRA] = useState(100000)
+  const [otherDeductions, setOtherDeductions] = useState(50000)
+
+  // Old regime calculation
+  const totalDeductionsOld = Math.min(deductions80C, 150000) + Math.min(deductions80D, 100000) + hra + otherDeductions
+  const taxableIncomeOld = Math.max(income - totalDeductionsOld - 50000, 0) // 50000 standard deduction
+  
+  const calcOldTax = (ti: number) => {
+    if (ti <= 250000) return 0
+    if (ti <= 500000) return (ti - 250000) * 0.05
+    if (ti <= 1000000) return 12500 + (ti - 500000) * 0.2
+    return 112500 + (ti - 1000000) * 0.3
+  }
+
+  // New regime calculation (FY 2024-25)
+  const taxableIncomeNew = Math.max(income - 75000, 0) // 75000 standard deduction in new regime
+  
+  const calcNewTax = (ti: number) => {
+    if (ti <= 300000) return 0
+    if (ti <= 700000) return (ti - 300000) * 0.05
+    if (ti <= 1000000) return 20000 + (ti - 700000) * 0.1
+    if (ti <= 1200000) return 50000 + (ti - 1000000) * 0.15
+    if (ti <= 1500000) return 80000 + (ti - 1200000) * 0.2
+    return 140000 + (ti - 1500000) * 0.3
+  }
+
+  const oldTax = calcOldTax(taxableIncomeOld)
+  const newTax = calcNewTax(taxableIncomeNew)
+  const cess = 0.04
+  const totalOldTax = oldTax * (1 + cess)
+  const totalNewTax = newTax * (1 + cess)
+  const savings = Math.abs(totalOldTax - totalNewTax)
+  const betterRegime = totalOldTax < totalNewTax ? 'Old Regime' : 'New Regime'
+
+  return (
+    <div className="calculator-card">
+      <div className="calc-card-header">
+        <Icon name="building" />
+        <div className="calc-header-text">
+          <h3>Tax Calculator</h3>
+          <p>Compare old vs new tax regime and plan your tax-saving investments.</p>
+        </div>
+      </div>
+      <div className="calc-body">
+        <div className="calc-inputs">
+          <CalcInput label="Annual Income (₹)" value={income} onChange={setIncome} suffix="₹" min={100000} max={50000000} step={50000} />
+          <CalcInput label="80C Deductions (₹)" value={deductions80C} onChange={setDeductions80C} suffix="₹" min={0} max={150000} step={5000} />
+          <CalcInput label="80D Health Insurance (₹)" value={deductions80D} onChange={setDeductions80D} suffix="₹" min={0} max={100000} step={5000} />
+          <CalcInput label="HRA Exemption (₹)" value={hra} onChange={setHRA} suffix="₹" min={0} max={500000} step={10000} />
+          <CalcInput label="Other Deductions (₹)" value={otherDeductions} onChange={setOtherDeductions} suffix="₹" min={0} max={500000} step={5000} />
+        </div>
+        <div className="calc-results-wrapper no-chart">
+          <div className="calc-results two-col">
+            <div className="calc-col">
+              <h4>Old Regime</h4>
+              <ResultRow label="Taxable Income" value={formatCurrency(taxableIncomeOld)} />
+              <ResultRow label="Tax + Cess" value={formatCurrency(totalOldTax)} />
+            </div>
+            <div className="calc-col">
+              <h4>New Regime</h4>
+              <ResultRow label="Taxable Income" value={formatCurrency(taxableIncomeNew)} />
+              <ResultRow label="Tax + Cess" value={formatCurrency(totalNewTax)} />
+            </div>
+          </div>
+        </div>
+        <div className="calc-verdict sufficient">
+          {betterRegime} saves you {formatCurrency(savings)}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// Vacation Planning Calculator
+function VacationCalculator() {
+  const [targetAmount, setTargetAmount] = useState(200000)
+  const [months, setMonths] = useState(12)
+  const [rate, setRate] = useState(8)
+
+  const monthlyRate = rate / 100 / 12
+  const requiredSIP = targetAmount / (((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate))
+
+  return (
+    <div className="calculator-card">
+      <div className="calc-card-header">
+        <Icon name="plane" />
+        <div className="calc-header-text">
+          <h3>Vacation Planning Calculator</h3>
+          <p>Plan and save for your dream vacation with systematic investments.</p>
+        </div>
+      </div>
+      <div className="calc-body">
+        <div className="calc-inputs">
+          <CalcInput label="Target Amount (₹)" value={targetAmount} onChange={setTargetAmount} suffix="₹" min={10000} max={5000000} step={10000} />
+          <CalcInput label="Time to Save (Months)" value={months} onChange={setMonths} suffix="Mo" min={3} max={60} />
+          <CalcInput label="Expected Return (%)" value={rate} onChange={setRate} suffix="%" min={1} max={15} step={0.5} />
+        </div>
+        <div className="calc-results-wrapper no-chart">
+          <div className="calc-results">
+            <ResultRow label="Target Vacation Fund" value={formatCurrency(targetAmount)} />
+            <ResultRow label="Time Period" value={`${months} Months`} />
+            <ResultRow label="Monthly SIP Required" value={formatCurrency(requiredSIP)} highlight />
+            <ResultRow label="Total Investment" value={formatCurrency(requiredSIP * months)} />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const calculatorTabs = [
+  { id: 'sip', name: 'SIP', component: SIPCalculator },
+  { id: 'lumpsum', name: 'Lumpsum', component: LumpsumCalculator },
+  { id: 'stp', name: 'STP', component: STPCalculator },
+  { id: 'swp', name: 'SWP', component: SWPCalculator },
+  { id: 'retirement', name: 'Retirement', component: RetirementCalculator },
+  { id: 'delay', name: 'Delay Planning', component: DelayCalculator },
+  { id: 'insurance', name: 'Life Insurance', component: LifeInsuranceCalculator },
+  { id: 'emi', name: 'EMI', component: EMICalculator },
+  { id: 'tax', name: 'Tax', component: TaxCalculator },
+  { id: 'vacation', name: 'Vacation', component: VacationCalculator },
+]
+
+function Calculators() {
+  const [activeTab, setActiveTab] = useState('retirement')
+  const ActiveCalculator = calculatorTabs.find(t => t.id === activeTab)?.component || RetirementCalculator
+
+  return (
+    <main className="calculators-page">
+      <section className="page-heading">
+        <div className="wrap">
+          <span className="eyebrow">Financial Tools</span>
+          <h1>Financial Planning Calculators</h1>
+          <p>Use our free calculators to plan investments, assess loan scenarios, and make informed financial decisions.</p>
         </div>
       </section>
       <section className="section wrap">
-        <div className="section-head">
-          <h2 className="section-title left">Comprehensive insurance plans</h2>
-          <p className="section-lead left">Protect yourself and your loved ones from life's uncertainties.</p>
+        <div className="calc-tabs">
+          {calculatorTabs.map(t => (
+            <button
+              key={t.id}
+              className={`calc-tab${activeTab === t.id ? ' active' : ''}`}
+              onClick={() => setActiveTab(t.id)}
+            >
+              {t.name}
+            </button>
+          ))}
         </div>
-        <div className="protect-grid" ref={protectReveal.ref}>
-          {insurance.map(([icon, title, text], i) => (
-            <article className={`protect-card ${protectReveal.className}`} style={{ transitionDelay: `${(i % 3) * 80}ms` }} key={title}>
-              <div className="icon-tile sm"><Icon name={icon} /></div>
-              <div><h3>{title}</h3><p>{text}</p></div>
+        <div className="calc-container">
+          <ActiveCalculator />
+        </div>
+        <p className="disclaimer">Calculations are for illustrative purposes only and do not guarantee actual returns.</p>
+      </section>
+      <ContactPanel compact />
+    </main>
+  )
+}
+
+const testimonials = [
+  { quote: 'I have known Madhav for over a decade and have relied on his expertise for multiple home loan processes across different banks. His deep knowledge and clear guidance made the entire experience smooth and stress-free.', author: 'Siddharth Ghosh', photo: 'https://randomuser.me/api/portraits/men/32.jpg' },
+  { quote: 'Their prompt responses, deep expertise, and consistent commitment to delivering the best possible guidance truly set them apart. Their approach to wealth creation is built on trust, strong ethical values, and absolute transparency.', author: 'Dr. Binay Kumar', photo: 'https://randomuser.me/api/portraits/men/45.jpg' },
+  { quote: 'Padhye Synergetic Company has been instrumental in helping me plan my retirement. Their personalized approach and honest advice gave me confidence in my financial future.', author: 'Rajesh Sharma', photo: 'https://randomuser.me/api/portraits/men/67.jpg' },
+  { quote: 'I appreciate the transparency and dedication of the team. They took the time to understand my goals and recommended solutions that perfectly fit my needs.', author: 'Priya Kulkarni', photo: 'https://randomuser.me/api/portraits/women/44.jpg' },
+  { quote: 'As a business owner, I needed comprehensive financial planning. PSC delivered exactly that — from insurance to investments, they covered everything with expertise.', author: 'Amit Deshmukh', photo: 'https://randomuser.me/api/portraits/men/52.jpg' },
+  { quote: 'The team\'s professionalism and in-depth knowledge made my investment journey simple and rewarding. Highly recommend their services to anyone seeking financial clarity.', author: 'Sneha Patil', photo: 'https://randomuser.me/api/portraits/women/68.jpg' },
+]
+
+function Testimonials() {
+  const quoteReveal = useReveal<HTMLDivElement>()
+  return (
+    <main className="testimonials-page">
+      <section className="page-heading">
+        <div className="wrap">
+          <span className="eyebrow">Client Stories</span>
+          <h1>What Our Clients Say</h1>
+          <p>Hear from thousands of satisfied investors who trust us with their financial journey.</p>
+        </div>
+      </section>
+      <section className="section wrap">
+        <div className="quote-grid" ref={quoteReveal.ref}>
+          {testimonials.map((t, i) => (
+            <blockquote className={`quote-card ${quoteReveal.className}`} style={{ transitionDelay: `${(i % 3) * 110}ms` }} key={t.author}>
+              <Icon name="quote" className="quote-mark" />
+              <p>{t.quote}</p>
+              <div className="quote-author">
+                <img src={t.photo} alt={t.author} className="quote-photo" />
+                <cite>{t.author}</cite>
+              </div>
+            </blockquote>
+          ))}
+        </div>
+      </section>
+      <ContactPanel compact />
+    </main>
+  )
+}
+
+function About() {
+  const aboutReveal = useReveal<HTMLDivElement>()
+  const founderReveal = useReveal<HTMLDivElement>()
+  return (
+    <main className="about-page">
+      <section className="page-heading">
+        <div className="wrap">
+          <span className="eyebrow">About Us</span>
+          <h1>A firm built on trust, not transactions</h1>
+          <p>Learn about our mission, vision, and the people behind Padhye Synergetic Company.</p>
+        </div>
+      </section>
+      <section className="section wrap">
+        <div className="lead-column">
+          <p><strong>Padhye Synergetic Company (PSC)</strong> is an independent financial services firm committed to helping individuals, families, and businesses build, protect, and grow their wealth through informed financial decisions.</p>
+          <p>With a client-first approach, we provide comprehensive financial solutions tailored to every stage of life — spanning investments, insurance, loans, and wealth management, so every recommendation aligns with your goals and risk profile.</p>
+          <p>Financial planning is more than choosing the right product — it's about creating long-term value, security, and peace of mind, built on ethical practice and transparency.</p>
+        </div>
+        <div className="index-grid" ref={aboutReveal.ref}>
+          {pillars.map((p, i) => (
+            <article className={`index-card ${aboutReveal.className}`} style={{ transitionDelay: `${i * 90}ms` }} key={p.num}>
+              <span className="index-num">{p.num}</span>
+              <h3>{p.title}</h3>
+              {p.lines && <ul className="index-list">{p.lines.map(l => <li key={l}>{l}</li>)}</ul>}
+              {p.text && <p>{p.text}</p>}
+              {p.text2 && <p className="index-tagline">{p.text2}</p>}
             </article>
           ))}
         </div>
-        <div className="center"><Link className="btn btn-primary" to={contactHref}>Get an insurance quote</Link></div>
-        <p className="disclaimer">Product information and calculations are for illustrative purposes only.</p>
       </section>
+      <section className="section founder-split wrap" ref={founderReveal.ref}>
+        <div className={`founder-media ${founderReveal.className}`}>
+          <img src="/assets/madhav-padhye.jpeg" alt="Mr. Madhav Padhye" />
+        </div>
+        <div className={`founder-copy ${founderReveal.className}`}>
+          <span className="eyebrow">Founder</span>
+          <h2 className="section-title left">Mr. Madhav Padhye</h2>
+          <p className="role-tag">Founder, Padhye Synergetic Company</p>
+          <p>Mr. Madhav Padhye is the guiding force behind Padhye Synergetic Company. With decades of financial knowledge and practical market experience, he specialises in investments, insurance planning, structured products, bonds, and long-term wealth strategies.</p>
+          <p>His leadership is rooted in honesty, transparency, and delivering well-researched, personalised financial solutions.</p>
+        </div>
+      </section>
+      <section className="quiet-band">
+        <div className="wrap narrow">
+          <Icon name="quote" className="band-quote" />
+          <h2>Inspiration — Mr. Madhusudhan Nawathe</h2>
+          <p>Although not a board member, Mr. Nawathe is a source of guidance and inspiration for the team. His value-driven outlook, discipline, and experience shape our approach to honesty, client service, and long-term trust.</p>
+        </div>
+      </section>
+      <ContactPanel compact />
     </main>
   )
 }
@@ -395,7 +1184,13 @@ function Contact() {
 
 export default function App() {
   const path = window.location.pathname.toLowerCase().replace(/\/$/, '') || '/'
-  const page = path === '/products' ? <Products /> : path === '/contact' ? <Contact /> : <Home />
+  const page = 
+    path === '/products' ? <Products /> : 
+    path === '/calculators' ? <Calculators /> : 
+    path === '/testimonials' ? <Testimonials /> : 
+    path === '/about' ? <About /> : 
+    path === '/contact' ? <Contact /> : 
+    <Home />
   return (
     <>
       <ScrollToTop />
