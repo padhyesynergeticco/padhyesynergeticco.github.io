@@ -136,9 +136,8 @@ function ChatBubble() {
 }
 
 const stats = [
-  ['7,000+', 'Happy Clients'],
+  ['3,000+', 'Happy Clients'],
   ['15+', 'Years of Practice'],
-  ['₹50Cr+', 'Assets Advised'],
   ['360°', 'Financial Services'],
 ]
 
@@ -332,6 +331,8 @@ const products = [
   { icon: 'planning' as const, title: 'Financial Planning', text: 'Build your wealth, secure your future. Your goals deserve a strategy, not just a spreadsheet — our planning aligns capital with ambition.', action: 'View Options' },
   { icon: 'growth' as const, title: 'Mutual Funds', text: 'Invest in India\'s growth story, one SIP at a time. Start with as little as ₹500 a month and harness the power of compounding.', action: 'View Options' },
   { icon: 'coins' as const, title: 'Fixed Deposits & Bonds', text: 'Secure your capital with predictable, fixed returns. Choose from a curated selection of FDs and highly-rated corporate bonds.', action: 'View Options' },
+  { icon: 'building' as const, title: 'Loan', text: 'Access flexible financing solutions for your home, business, or personal needs. Competitive rates and quick approvals to help you achieve your goals.', action: 'View Options' },
+  { icon: 'plane' as const, title: 'NRI Segments', text: 'Specialized financial services for Non-Resident Indians. From NRE/NRO accounts to repatriation planning, we help you manage wealth across borders.', action: 'View Options' },
 ]
 
 const insurance: [IconName, string, string][] = [
